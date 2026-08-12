@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolás Ponce Torres — Full-Stack Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0A0B0D',
+                        surface: '#17181D',
+                        elev: '#1D1F25',
+                        border: '#24262C',
+                        borderHover: '#34363D',
+                        text: '#EDEDEF',
+                        muted: '#9A9BA3',
+                        faint: '#5C5E66',
+                        accent: '#43E6B5',
+                        accentDim: 'rgba(67,230,181,0.10)',
+                        amber: '#FF8A3D',
+                        amberDim: 'rgba(255,138,61,0.10)',
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        * {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0A0B0D;
+            background-image:
+                radial-gradient(circle at 15% 0%, rgba(67, 230, 181, 0.06), transparent 40%),
+                radial-gradient(circle at 85% 15%, rgba(255, 138, 61, 0.04), transparent 35%),
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: auto, auto, 44px 44px, 44px 44px;
+        }
+
+        ::selection {
+            background: rgba(67, 230, 181, 0.25);
+            color: #EDEDEF;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.05em;
+            background: #43E6B5;
+            margin-left: 2px;
+            vertical-align: text-bottom;
+            animation: blink 1s steps(1) infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .status-dot {
+            box-shadow: 0 0 0 3px rgba(67, 230, 181, 0.12);
+        }
+
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 999px;
+            border: 1px solid rgba(67, 230, 181, 0.4);
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.7);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
+        }
+
+        .project-card {
+            transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+        }
+
+        .project-card:hover {
+            border-color: #34363D;
+            transform: translateY(-3px);
+            background-color: #1D1F25;
+        }
+
+        .stack-pill {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #43E6B5;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .terminal-cursor,
+            .status-dot::after {
+                animation: none;
+            }
+
+            * {
+                scroll-behavior: auto;
+            }
+        }
+
+        .mono-num {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+
+<body class="font-body text-text antialiased">
+
+    <!-- NAV -->
+    <header class="sticky top-0 z-50 border-b border-border/80 bg-bg/85 backdrop-blur">
+        <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+            <a href="#top" class="font-display font-semibold text-sm tracking-tight text-text">
+                nicolas<span class="text-accent">.</span>ponce
+            </a>
+            <nav class="hidden md:flex items-center gap-8 font-mono text-[13px] text-muted">
+                <a href="#sobre-mi" class="hover:text-text transition-colors">01_sobre-mi</a>
+                <a href="#proyectos" class="hover:text-text transition-colors">02_proyectos</a>
+                <a href="#contacto" class="hover:text-text transition-colors">03_contacto</a>
+            </nav>
+            <a href="#contacto"
+                class="hidden md:inline-flex items-center gap-2 border border-border hover:border-accent/50 rounded-full pl-4 pr-3 py-1.5 text-[13px] font-mono text-text transition-colors group">
+                Contactar
+                <span class="text-accent group-hover:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <button class="md:hidden text-muted font-mono text-xs border border-border rounded px-2 py-1"
+                aria-label="Menú">menu</button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="top" class="max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-20 md:pb-28">
+        <div class="grid md:grid-cols-[1.1fr_0.9fr] gap-14 md:gap-10 items-start">
+
+            <!-- Left: identity -->
+            <div>
+                <div
+                    class="inline-flex items-center gap-2 font-mono text-[12px] text-accent border border-accent/25 bg-accentDim rounded-full pl-2.5 pr-3.5 py-1 mb-7">
+                    <span class="relative w-1.5 h-1.5 rounded-full bg-accent status-dot"></span>
+                    Disponible para práctica profesional · Dic 2026
+                </div>
+
+                <h1
+                    class="font-display font-semibold text-[40px] leading-[1.08] sm:text-[52px] md:text-[60px] tracking-tight text-text">
+                    Nicolás<br>Ponce Torres
+                </h1>
+
+                <p class="mt-5 font-mono text-accent text-[15px] md:text-base">
+                    &gt; Ingeniero de Software Full-Stack
+                </p>
+
+                <p class="mt-4 text-muted text-[16px] md:text-[17px] leading-relaxed max-w-md">
+                    Construyo productos con React, TypeScript y Next.js — con foco en datos, ML y mobile. Actualmente
+                    escalando <span class="text-text">Fleect</span> como Co-Founder &amp; CTO.
+                </p>
+
+                <div class="mt-6 flex items-center gap-2 text-faint font-mono text-[13px]">
+                    <span>📍</span> Santiago, Chile
+                </div>
+
+                <div class="mt-9 flex flex-wrap items-center gap-4">
+                    <a href="#proyectos"
+                        class="inline-flex items-center gap-2 bg-accent text-bg font-medium text-[14px] rounded-full px-6 py-3 hover:bg-accent/90 transition-colors">
+                        Ver proyectos
+                    </a>
+                    <a href="#contacto"
+                        class="inline-flex items-center gap-2 border border-border text-text font-medium text-[14px] rounded-full px-6 py-3 hover:border-borderHover transition-colors">
+                        Contactar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: terminal panel (signature element) -->
+            <div class="rounded-xl border border-border bg-surface overflow-hidden shadow-2xl shadow-black/40">
+                <div class="flex items-center gap-1.5 px-4 py-3 border-b border-border bg-elev">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#4A4C53]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#4A4C53]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#4A4C53]"></span>
+                    <span class="ml-3 font-mono text-[11px] text-faint">whoami — zsh</span>
+                </div>
+                <div class="p-5 md:p-6 font-mono text-[13px] md:text-[13.5px] leading-[1.9]">
+                    <p><span class="text-accent">$</span> <span class="text-text">whoami</span></p>
+                    <p class="text-muted">&gt; nicolas_ponce_torres</p>
+                    <p class="text-muted">&nbsp;&nbsp;role: <span class="text-text">Full-Stack Engineer</span></p>
+                    <p class="text-muted">&nbsp;&nbsp;mention: <span class="text-text">Ciencia de Datos</span></p>
+                    <p class="text-muted">&nbsp;&nbsp;stack: <span class="text-text">React · TypeScript · Next.js</span>
+                    </p>
+                    <p class="text-muted">&nbsp;&nbsp;building: <span class="text-text">Fleect</span> <span
+                            class="text-amber">(Co-Founder &amp; CTO)</span></p>
+                    <p class="text-muted">&nbsp;&nbsp;school: <span class="text-text">Duoc UC — egreso 12/2026</span>
+                    </p>
+                    <p class="text-muted">&nbsp;&nbsp;status: <span class="text-accent">available_for_internship
+                            ✔</span></p>
+                    <p class="mt-1"><span class="text-accent">$</span><span class="terminal-cursor"></span></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SOBRE MI -->
+    <section id="sobre-mi" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 border-t border-border">
+        <div class="flex items-baseline gap-3 mb-10">
+            <span class="font-mono text-accent text-sm">01</span>
+            <h2 class="font-display font-semibold text-2xl md:text-[32px] tracking-tight">Sobre mí</h2>
+        </div>
+
+        <div class="grid md:grid-cols-[0.95fr_1.05fr] gap-12 md:gap-16">
+            <div>
+                <p class="text-text/90 text-[17px] md:text-[18px] leading-relaxed">
+                    Estudiante de Ingeniería en Informática en <span class="text-text">Duoc UC</span> (egreso diciembre
+                    2026), especializado en desarrollo <span class="text-accent">full-stack</span> con React, TypeScript
+                    y Next.js.
+                </p>
+                <p class="mt-5 text-muted text-[16px] leading-relaxed">
+                    Como Co-Founder &amp; CTO de <span class="text-text">Fleect</span> diseño y construyo software de
+                    gestión de flotas para el mercado B2B, desde la arquitectura hasta el producto en manos de usuarios
+                    reales. Me interesa seguir profundizando en Ciencia de Datos, Machine Learning y desarrollo mobile —
+                    llevar productos de la idea a producción es lo que más disfruto.
+                </p>
+
+                <div class="mt-9 flex flex-wrap gap-6">
+                    <div>
+                        <p class="font-display text-2xl font-semibold text-text">4</p>
+                        <p class="font-mono text-[12px] text-faint mt-1">productos<br>construidos</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-2xl font-semibold text-text">1</p>
+                        <p class="font-mono text-[12px] text-faint mt-1">SaaS B2B<br>en producción</p>
+                    </div>
+                    <div>
+                        <p class="font-display text-2xl font-semibold text-text">2026</p>
+                        <p class="font-mono text-[12px] text-faint mt-1">egreso<br>Duoc UC</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- stack.json signature card -->
+            <div class="rounded-xl border border-border bg-surface overflow-hidden">
+                <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-elev">
+                    <span class="font-mono text-[11px] text-faint">stack.json</span>
+                </div>
+                <div class="p-5 md:p-6 font-mono text-[13px] leading-[1.85] overflow-x-auto">
+                    <pre class="whitespace-pre-wrap"><span class="text-muted">{</span>
+  <span class="text-accent">"lenguajes"</span><span class="text-muted">:</span> <span class="text-amber">["TypeScript", "Python", "JavaScript", "SQL"]</span><span class="text-muted">,</span>
+  <span class="text-accent">"frameworks"</span><span class="text-muted">:</span> <span class="text-amber">["React", "Next.js", "Node.js", "React Native", "Angular"]</span><span class="text-muted">,</span>
+  <span class="text-accent">"datos_ia"</span><span class="text-muted">:</span> <span class="text-amber">["Scikit-learn", "Pandas", "Power BI", "Gemini API"]</span><span class="text-muted">,</span>
+  <span class="text-accent">"infraestructura"</span><span class="text-muted">:</span> <span class="text-amber">["Supabase", "PostgreSQL", "Vercel", "Firebase", "Git"]</span>
+<span class="text-muted">}</span></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24 border-t border-border">
+        <div class="flex items-baseline gap-3 mb-2">
+            <span class="font-mono text-accent text-sm">02</span>
+            <h2 class="font-display font-semibold text-2xl md:text-[32px] tracking-tight">Proyectos</h2>
+        </div>
+        <p class="text-muted text-[15px] mb-12 max-w-lg">De la idea a producción — cuatro productos que reflejan cómo
+            pienso y construyo.</p>
+
+        <div class="grid md:grid-cols-2 gap-5">
+
+            <!-- Fleect -->
+            <div class="project-card rounded-xl border border-border bg-surface p-6 md:p-7">
+                <div class="flex items-start justify-between gap-3 mb-5">
+                    <span class="font-mono text-[12px] text-faint">PROJECT_01</span>
+                    <span
+                        class="font-mono text-[11px] text-amber border border-amber/25 bg-amberDim rounded-full px-2.5 py-1">En
+                        producción</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-text">Fleect</h3>
+                <p class="font-mono text-[12.5px] text-accent mt-1">Co-Founder &amp; CTO</p>
+                <p class="text-muted text-[14.5px] leading-relaxed mt-4">
+                    SaaS B2B para gestión de flotas, con arquitectura multi-tenant y aislamiento de datos por RLS. OCR
+                    automatizado de documentos con Gemini API.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Next.js</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">TypeScript</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Supabase</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">PostgreSQL</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Gemini
+                        API</span>
+                </div>
+            </div>
+
+            <!-- Predictivo Climatico -->
+            <div class="project-card rounded-xl border border-border bg-surface p-6 md:p-7">
+                <div class="flex items-start justify-between gap-3 mb-5">
+                    <span class="font-mono text-[12px] text-faint">PROJECT_02</span>
+                    <span
+                        class="font-mono text-[11px] text-muted border border-border rounded-full px-2.5 py-1">Completado</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-text">Sistema Predictivo Climático</h3>
+                <p class="font-mono text-[12.5px] text-accent mt-1">Proyecto académico · Data/ML</p>
+                <p class="text-muted text-[14.5px] leading-relaxed mt-4">
+                    Pipeline CRISP-DM completo: modelo de clasificación (84% Recall) y de regresión (R² 66%) sobre datos
+                    climáticos, con dashboard de resultados en Power BI.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Python</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Scikit-learn</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Pandas</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Power
+                        BI</span>
+                </div>
+            </div>
+
+            <!-- SalchiHealth -->
+            <div class="project-card rounded-xl border border-border bg-surface p-6 md:p-7">
+                <div class="flex items-start justify-between gap-3 mb-5">
+                    <span class="font-mono text-[12px] text-faint">PROJECT_03</span>
+                    <span
+                        class="font-mono text-[11px] text-muted border border-border rounded-full px-2.5 py-1">Completado</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-text">SalchiHealth</h3>
+                <p class="font-mono text-[12.5px] text-accent mt-1">Full-Stack Mobile</p>
+                <p class="text-muted text-[14.5px] leading-relaxed mt-4">
+                    App móvil de monitoreo clínico y salud preventiva para perros salchicha, con diseño de interfaz
+                    inspirado en las guías de iOS.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">React
+                        Native</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Expo</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Supabase</span>
+                </div>
+            </div>
+
+            <!-- SnkrHub -->
+            <div class="project-card rounded-xl border border-border bg-surface p-6 md:p-7">
+                <div class="flex items-start justify-between gap-3 mb-5">
+                    <span class="font-mono text-[12px] text-faint">PROJECT_04</span>
+                    <span
+                        class="font-mono text-[11px] text-muted border border-border rounded-full px-2.5 py-1">Completado</span>
+                </div>
+                <h3 class="font-display font-semibold text-xl text-text">SnkrHub</h3>
+                <p class="font-mono text-[12.5px] text-accent mt-1">Full-Stack Mobile</p>
+                <p class="text-muted text-[14.5px] leading-relaxed mt-4">
+                    App para coleccionistas de zapatillas: portafolio financiero e inventario con seguimiento de
+                    lanzamientos en tiempo real.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-5">
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Ionic</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Angular</span>
+                    <span
+                        class="stack-pill text-[11.5px] text-text/80 border border-border rounded-full px-2.5 py-1">Firebase</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="border-t border-border">
+        <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+            <div class="flex items-baseline gap-3 mb-6">
+                <span class="font-mono text-accent text-sm">03</span>
+                <h2 class="font-display font-semibold text-2xl md:text-[32px] tracking-tight">Contacto</h2>
+            </div>
+
+            <h3
+                class="font-display font-semibold text-[34px] sm:text-[44px] md:text-[52px] leading-[1.1] tracking-tight max-w-2xl">
+                ¿Conversemos sobre la práctica?
+            </h3>
+            <p class="text-muted text-[16px] md:text-[17px] mt-5 max-w-md">
+                Disponible para práctica profesional a partir de diciembre 2026. Respondo rápido.
+            </p>
+
+            <div class="mt-10 flex flex-wrap items-center gap-4">
+                <a href="mailto:nicolas.ponce@correo.com"
+                    class="inline-flex items-center gap-2 bg-accent text-bg font-medium text-[14px] rounded-full px-6 py-3 hover:bg-accent/90 transition-colors">
+                    nicolas.ponce@correo.com
+                </a>
+                <a href="#"
+                    class="inline-flex items-center gap-2 border border-border text-text font-medium text-[14px] rounded-full px-6 py-3 hover:border-borderHover transition-colors">
+                    GitHub
+                </a>
+                <a href="#"
+                    class="inline-flex items-center gap-2 border border-border text-text font-medium text-[14px] rounded-full px-6 py-3 hover:border-borderHover transition-colors">
+                    LinkedIn
+                </a>
+            </div>
+
+            <div class="mt-6 flex items-center gap-2 text-faint font-mono text-[13px]">
+                <span>📍</span> Santiago, Chile
+            </div>
+        </div>
+
+        <div class="border-t border-border">
+            <div
+                class="max-w-6xl mx-auto px-6 md:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[12px] text-faint">
+                <span>© 2026 Nicolás Ponce Torres</span>
+                <span>Diseñado &amp; construido en Santiago, Chile</span>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
