@@ -12,18 +12,18 @@ export function SkillsBlock({ skills }: SkillsBlockProps) {
         <span className="font-mono text-[11px] text-faint">stack.json</span>
       </div>
       <div className="p-5 md:p-6 font-mono text-[13px] leading-[1.85] overflow-x-auto">
-        <pre className="whitespace-pre-wrap">
-          <span className="text-muted">{`{\n`}</span>
+        <div className="whitespace-pre-wrap">
+          <div className="text-muted">{`{`}</div>
           {skills.map((skill, index) => (
-            <React.Fragment key={skill.category}>
-              {'  '}<span className="text-accent">"{skill.category}"</span>
+            <div key={skill.category} className="pl-4">
+              <span className="text-accent">"{skill.category}"</span>
               <span className="text-muted">: </span>
               <span className="text-amber">[{skill.items.map((i) => `"${i}"`).join(', ')}]</span>
-              {index < skills.length - 1 ? <span className="text-muted">,\n</span> : '\n'}
-            </React.Fragment>
+              {index < skills.length - 1 && <span className="text-muted">,</span>}
+            </div>
           ))}
-          <span className="text-muted">{`}`}</span>
-        </pre>
+          <div className="text-muted">{`}`}</div>
+        </div>
       </div>
     </div>
   );

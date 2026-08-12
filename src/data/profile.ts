@@ -1,9 +1,9 @@
 import { Profile } from '../types';
 
 export const profile: Profile = {
-  name: 'Nicolas Ponce Torres',
-  role: 'Full-Stack Engineer',
-  tagline: 'Construyo productos con React, TypeScript y Next.js — con foco en datos, ML y mobile. Actualmente escalando Fleect como Co-Founder & CTO.',
+  name: 'Nicolas Ponce',
+  role: 'Software Engineer',
+  tagline: 'Ingeniero de Software especializado en arquitecturas modernas. Mi stack principal es React, TypeScript y Next.js, con un fuerte enfoque en bases de datos e integración de Inteligencia Artificial. Diseñando el futuro de Fleect como CTO.',
   mention: 'Ciencia de Datos',
   stack: ['React', 'TypeScript', 'Next.js'],
   company: {
@@ -16,17 +16,17 @@ export const profile: Profile = {
   },
   status: {
     id: 'available_for_internship',
-    label: 'Disponible para práctica profesional · Dic 2026'
+    label: 'Disponible para nuevos desafíos'
   },
   location: 'Santiago, Chile',
   contact: {
     email: 'nicolaasponcet@gmail.com',
-    github: '#',
-    linkedin: '#'
+    github: 'https://github.com/niponcet',
+    linkedin: 'https://www.linkedin.com/in/nicolas-ponce-264694292/'
   },
   about: {
-    paragraph1: 'Estudiante de Ingeniería en Informática en Duoc UC (egreso diciembre 2026), especializado en desarrollo full-stack con React, TypeScript y Next.js.',
-    paragraph2: 'Como Co-Founder & CTO de Fleect diseño y construyo software de gestión de flotas para el mercado B2B, desde la arquitectura hasta el producto en manos de usuarios reales. Me interesa seguir profundizando en Ciencia de Datos, Machine Learning y desarrollo mobile — llevar productos de la idea a producción es lo que más disfruto.',
+    paragraph1: 'Soy un Ingeniero de Software en formación (Duoc UC, 2026) apasionado por construir productos desde cero, siempre buscando resolver problemas reales a través del código, los datos y la automatización.',
+    paragraph2: 'Disfruto construir desde cero, como lo hice con Fleect (SaaS B2B con IA). Busco sumarme a un equipo experimentado para aportar valor inmediato, adoptar prácticas ágiles y escalar mi código en proyectos de alto impacto',
     stats: [
       {
         value: '4',

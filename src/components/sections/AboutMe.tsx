@@ -54,7 +54,9 @@ export default function AboutMe() {
         </div>
 
         {/* stack.json signature card */}
-        <SkillsBlock skills={skills} />
+        <div className="md:-mt-4">
+          <SkillsBlock skills={skills} />
+        </div>
       </div>
     </section>
   );

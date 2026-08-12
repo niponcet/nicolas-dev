@@ -12,30 +12,29 @@ export default function Contact() {
         </div>
 
         <h3 className="font-display font-semibold text-[34px] sm:text-[44px] md:text-[52px] leading-[1.1] tracking-tight max-w-2xl">
-          ¿Conversemos sobre la práctica?
+          ¿Empezamos?
         </h3>
         <p className="text-muted text-[16px] md:text-[17px] mt-5 max-w-md">
-          Disponible para práctica profesional a partir de diciembre 2026. Respondo rápido.
+          Actualmente disponible para nuevos desafíos en la industria. Ya sea para una oportunidad laboral o para hablar de arquitectura y código, ¡escríbeme!.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Button variant="primary" href={`mailto:${profile.contact.email}`}>
+        <div className="mt-10 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4">
+          <Button variant="primary" href={`mailto:${profile.contact.email}`} className="w-full sm:w-auto justify-center">
             {profile.contact.email}
           </Button>
-          {/* TODO: Actualizar URLs de GitHub y LinkedIn desde data/profile.ts */}
-          <Button variant="secondary" href={profile.contact.github}>
-            <FaGithub className="w-4 h-4" />
-            GitHub
-          </Button>
-          <Button variant="secondary" href={profile.contact.linkedin}>
-            <FaLinkedin className="w-4 h-4" />
-            LinkedIn
-          </Button>
+          <div className="grid grid-cols-2 gap-4 w-full sm:w-auto sm:flex sm:gap-4">
+            <Button variant="secondary" href={profile.contact.github} className="justify-center">
+              <FaGithub className="w-4 h-4" />
+              GitHub
+            </Button>
+            <Button variant="secondary" href={profile.contact.linkedin} className="justify-center">
+              <FaLinkedin className="w-4 h-4" />
+              LinkedIn
+            </Button>
+          </div>
         </div>
 
-        <div className="mt-6 flex items-center gap-2 text-faint font-mono text-[13px]">
-          <span>📍</span> {profile.location}
-        </div>
+
       </div>
     </section>
   );

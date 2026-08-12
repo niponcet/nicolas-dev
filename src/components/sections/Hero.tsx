@@ -13,7 +13,7 @@ export default function Hero() {
   return (
     <section id="top" className="max-w-6xl mx-auto px-6 md:px-10 pt-28 md:pt-32 pb-20 md:pb-28">
       <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-14 md:gap-10 items-start">
-        
+
         {/* Left: identity */}
         <div>
           <div className="inline-flex items-center gap-2 font-mono text-[12px] text-accent border border-accent/25 bg-accentDim rounded-full pl-2.5 pr-3.5 py-1 mb-7">
@@ -22,7 +22,7 @@ export default function Hero() {
           </div>
 
           <h1 className="font-display font-semibold text-[40px] leading-[1.08] sm:text-[52px] md:text-[60px] tracking-tight text-text">
-            {firstName}<br />{lastName}
+            {profile.name}
           </h1>
 
           <p className="mt-5 font-mono text-accent text-[15px] md:text-base">
@@ -40,7 +40,7 @@ export default function Hero() {
           </p>
 
           <div className="mt-6 flex items-center gap-2 text-faint font-mono text-[13px]">
-            <span>📍</span> {profile.location}
+            <span></span> {profile.location}
           </div>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -54,7 +54,9 @@ export default function Hero() {
         </div>
 
         {/* Right: terminal panel */}
-        <HeroPanel profile={profile} />
+        <div className="md:mt-10">
+          <HeroPanel profile={profile} />
+        </div>
       </div>
     </section>
   );
