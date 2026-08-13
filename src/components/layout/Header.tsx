@@ -62,8 +62,10 @@ export default function Header() {
           }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
         >
-          <a href="#top" className="font-display font-semibold text-sm tracking-tight text-text whitespace-nowrap" onClick={() => setIsMenuOpen(false)}>
-            nicolas<span className="text-accent">.</span>dev
+          <a href="#top" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
+            <div className="w-7 h-7 rounded-full overflow-hidden flex items-center justify-center flex-shrink-0 bg-white">
+              <img src="/logo.png" alt="nicolas.dev" className="w-full h-full object-cover scale-110" />
+            </div>
           </a>
 
           <nav className="hidden md:flex items-center gap-8 font-mono text-[13px] text-muted whitespace-nowrap">

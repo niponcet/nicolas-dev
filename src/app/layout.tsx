@@ -20,7 +20,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "nicolas.dev - Software Engineer",
+  title: "Nicolas Ponce - Software Engineer",
   description: "Portafolio de Nicolas Ponce Torres, Ingeniero de Software Full-Stack con mención en Ciencia de Datos.",
 };
 

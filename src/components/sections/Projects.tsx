@@ -101,17 +101,19 @@ export default function Projects() {
             </p>
           </div>
 
-          <motion.div style={{ y: gridY }} className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full will-change-transform">
-            {projects.slice(0, 4).map((project, index) => (
-              <ScrollCard
-                key={project.id}
-                project={project}
-                scrollYProgress={scrollYProgress}
-                range={CARD_RANGES[index]}
-                direction={index % 2 === 0 ? -1 : 1}
-              />
-            ))}
-          </motion.div>
+          <div className="flex-1 overflow-hidden md:overflow-visible [mask-image:linear-gradient(to_bottom,transparent,black_10%,black)] md:[mask-image:none]">
+            <motion.div style={{ y: gridY }} className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full will-change-transform">
+              {projects.slice(0, 4).map((project, index) => (
+                <ScrollCard
+                  key={project.id}
+                  project={project}
+                  scrollYProgress={scrollYProgress}
+                  range={CARD_RANGES[index]}
+                  direction={index % 2 === 0 ? -1 : 1}
+                />
+              ))}
+            </motion.div>
+          </div>
 
         </div>
       </section>
