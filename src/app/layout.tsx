@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className="scroll-smooth scroll-pt-24 md:scroll-pt-28">
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${jetBrainsMono.variable} font-body text-text antialiased min-h-full flex flex-col`}
       >
