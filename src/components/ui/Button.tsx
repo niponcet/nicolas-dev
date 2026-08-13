@@ -10,9 +10,9 @@ export function Button({ variant = 'primary', className, children, ...props }: B
   return (
     <a
       className={cn(
-        "inline-flex items-center gap-2 font-medium text-[14px] rounded-full px-6 py-3 transition-colors",
+        "inline-flex items-center gap-2 font-medium text-[14px] rounded-full px-6 py-3 md:py-2.5 transition-colors border border-transparent",
         variant === 'primary' && "bg-accent text-bg hover:bg-accent/90",
-        variant === 'secondary' && "border border-border text-text hover:border-borderHover",
+        variant === 'secondary' && "border-border text-text hover:border-borderHover",
         className
       )}
       {...props}

@@ -11,7 +11,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 60);
     };
 
     handleScroll();
@@ -53,6 +53,7 @@ export default function Header() {
         {/* TOP ROW */}
         <motion.div
           layout={!shouldReduceMotion}
+          initial={false}
           className="flex items-center justify-between w-full"
           animate={{
             height: isScrolled ? 48 : 56,

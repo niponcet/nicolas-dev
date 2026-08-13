@@ -13,12 +13,12 @@ export default function Hero() {
 
   return (
     <section id="top" className="max-w-6xl mx-auto px-6 md:px-10 pt-28 md:pt-32 pb-20 md:pb-28">
-      <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-14 md:gap-10 items-start">
+      <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-10 items-start">
 
         {/* Left: identity */}
-        <FadeIn direction="up">
+        <FadeIn direction="none">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-[12px] text-accent border border-accent/25 bg-accentDim rounded-full pl-2.5 pr-3.5 py-1 mb-7">
+            <div className="flex w-fit mx-auto md:mx-0 items-center gap-2 font-mono text-[12px] text-accent border border-accent/25 bg-accentDim rounded-full pl-2.5 pr-3.5 py-1 mb-7">
               <span className="relative w-1.5 h-1.5 rounded-full bg-accent status-dot"></span>
               {profile.status.label}
             </div>
@@ -45,11 +45,11 @@ export default function Hero() {
               <span></span> {profile.location}
             </div>
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Button variant="primary" href="#proyectos">
+            <div className="mt-9 flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-4">
+              <Button variant="primary" href="#proyectos" className="justify-center">
                 Ver proyectos
               </Button>
-              <Button variant="secondary" href="#contacto">
+              <Button variant="secondary" href="#contacto" className="justify-center">
                 Contactar
               </Button>
             </div>
