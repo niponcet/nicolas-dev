@@ -6,12 +6,12 @@ import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { FadeIn } from "@/components/ui/FadeIn";
 
-// Rangos de aparición para las 4 tarjetas
+// Rangos de aparición para las 4 tarjetas (la última tarjeta entra antes para tener más tiempo de permanencia)
 const CARD_RANGES = [
-  [0.10, 0.32], // Card 1
-  [0.32, 0.54], // Card 2
-  [0.54, 0.76], // Card 3
-  [0.76, 0.98], // Card 4
+  [0.08, 0.25], // Card 1
+  [0.25, 0.44], // Card 2
+  [0.44, 0.63], // Card 3
+  [0.63, 0.80], // Card 4 (llega a foco completo en 0.80 y se mantiene al 100% hasta 1.0)
 ];
 
 // Sub-componente para abstraer la lógica de Hooks por cada tarjeta
@@ -78,16 +78,17 @@ export default function Projects() {
   }, []);
 
   // En móvil (1 columna) necesitamos subir mucho más el grid para ver las 4 tarjetas.
-  const gridY = useTransform(scrollYProgress, [0.3, 1], [0, isMobile ? -900 : -280]);
+  // Concluimos la traslación antes (0.82) para que la 4ta tarjeta quede fija y visible durante el tramo final
+  const gridY = useTransform(scrollYProgress, [0.22, 0.82], [0, isMobile ? -900 : -280]);
 
   return (
     <>
       <section
         ref={containerRef}
         id="proyectos"
-        // En móvil le damos más altura (300vh) para que el scroll de 4 tarjetas no sea tan rápido
+        // Le damos un poco más de recorrido para que la última tarjeta tenga tiempo de lectura
         className="relative border-t border-border"
-        style={{ height: isMobile ? '300vh' : '220vh' }}
+        style={{ height: isMobile ? '320vh' : '250vh' }}
       >
         <div className="sticky top-0 h-screen w-full flex flex-col pt-24 md:pt-32 max-w-6xl mx-auto px-6 md:px-10 overflow-hidden">
 
